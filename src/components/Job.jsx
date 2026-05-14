@@ -1,6 +1,7 @@
 import { Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { ADD_TO_FAVORITES } from "../redux/actions";
 
 const Job = ({ data }) => {
   const dispatch = useDispatch();
@@ -16,8 +17,7 @@ const Job = ({ data }) => {
         <Link to={`/${data.company_name}`}>{data.company_name}</Link>
         <Button
           onClick={() => {
-            dispatch({ type: "ADD_TO_FAVORITES", payload: data.company_name });
-            console.log(favorites);
+            dispatch(ADD_TO_FAVORITES(data.company_name));
           }}
           disabled={favorites?.some(
             (favorite) => favorite === data.company_name,
